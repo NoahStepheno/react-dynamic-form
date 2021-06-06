@@ -1,25 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Form from "@rjsf/material-ui";
+import { Provider } from "react-redux";
+import Grid from "@material-ui/core/Grid";
+import "./App.css";
+import { store } from "./store/store";
+import { LeftView } from "./components/LeftView";
+import { Design } from "./components/Design";
+import { Modifier } from "./components/Modifier";
+
+const schema: any = {
+  type: "object",
+  properties: {
+    name: {
+      type: "string",
+      required: true,
+    },
+  },
+};
+
+const uiSchema = {};
+
+const log = (s: string) => (v: any) => console.log(`${s}: `, v);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Grid container spacing={3}>
+        <Grid item xs={3}>
+          <LeftView />
+        </Grid>
+        <Grid item xs>
+          <Design />
+        </Grid>
+        <Grid item xs={3}>
+          <Modifier />
+        </Grid>
+      </Grid>
+    </Provider>
   );
 }
 
