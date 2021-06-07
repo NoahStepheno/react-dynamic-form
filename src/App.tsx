@@ -8,20 +8,6 @@ import { LeftView } from "./components/LeftView";
 import { Design } from "./components/Design";
 import { Modifier } from "./components/Modifier";
 
-const schema: any = {
-  type: "object",
-  properties: {
-    name: {
-      type: "string",
-      required: true,
-    },
-  },
-};
-
-const uiSchema = {};
-
-const log = (s: string) => (v: any) => console.log(`${s}: `, v);
-
 function App() {
   return (
     <Provider store={store}>

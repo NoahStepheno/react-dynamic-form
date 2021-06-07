@@ -1,22 +1,19 @@
 import React from "react";
 import { Button } from "@material-ui/core";
-import schema from "../../schema/index";
+import useSchema from "../../hooks/useSchema";
 
 export const LeftView = () => {
+  const { addInput } = useSchema();
   return (
     <>
       <div>
-        <Button
-          variant="outlined"
-          color="primary"
-          onClick={schema.addInput.bind(schema)}
-        >
-          输入
+        <Button variant="outlined" color="primary" onClick={addInput}>
+          单行文本
         </Button>
       </div>
       <div>
         <Button variant="outlined" color="primary">
-          单选
+          多行文本
         </Button>
       </div>
       <div>

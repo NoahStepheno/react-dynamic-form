@@ -1,0 +1,8 @@
+.design-field-template .design-field-template {
+  border: 1px dashed #f0f0f0;
+  position: relative;
+}
+
+.design-field-template.selected {
+  border-color: blue;
+}
