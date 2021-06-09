@@ -57,6 +57,24 @@ export const schema = createModel<RootModel>()({
         selectUuid: payload,
       };
     },
+    toggleRequired(state) {
+      const oldRequired = state.JSONSchema.required.concat();
+      const index = oldRequired.indexOf(state.selectUuid);
+      let newRequired;
+      if (index > -1) {
+        oldRequired.splice(index, 1);
+        newRequired = oldRequired;
+      } else {
+        newRequired = oldRequired.concat(state.selectUuid);
+      }
+      return {
+        ...state,
+        JSONSchema: {
+          ...state.JSONSchema,
+          required: newRequired,
+        },
+      };
+    },
   },
   effects: (dispatch) => ({}),
 });

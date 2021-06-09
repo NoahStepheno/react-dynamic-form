@@ -5,7 +5,7 @@ import useSchema from "../../hooks/useSchema";
 export const LeftView = () => {
   const { addInput } = useSchema();
   return (
-    <>
+    <div style={{ padding: 20 }}>
       <div>
         <Button variant="outlined" color="primary" onClick={addInput}>
           单行文本
@@ -21,6 +21,6 @@ export const LeftView = () => {
           多选
         </Button>
       </div>
-    </>
+    </div>
   );
 };

@@ -11,7 +11,7 @@ import { Modifier } from "./components/Modifier";
 function App() {
   return (
     <Provider store={store}>
-      <Grid container spacing={3}>
+      <Grid container style={{ minHeight: "100vh" }}>
         <Grid item xs={3}>
           <LeftView />
         </Grid>
