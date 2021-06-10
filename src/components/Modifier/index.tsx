@@ -4,9 +4,16 @@ import { FormControl, InputLabel, Select, TextField } from "@material-ui/core";
 import "./index.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, RootState } from "../../store/store";
+import TextModifier from "../Widget/TextWidget/TextModifier";
+import RadioModifier from "../Widget/RadioWidget/RadioModifier";
+
+const MODIFIER_MAPPER = {
+  text: TextModifier,
+  radio: RadioModifier,
+};
 
 export const Modifier = () => {
-  const { edit, selectSchema }: any = useSchema();
+  const { edit, selectSchema, selectUISchema }: any = useSchema();
   const { title, description } = selectSchema;
   const required = useSelector(
     (state: RootState) => state.schema.JSONSchema?.required
@@ -21,6 +28,10 @@ export const Modifier = () => {
   if (title === undefined) {
     return null;
   }
+
+  const type: keyof typeof MODIFIER_MAPPER = selectUISchema["ui:widget"];
+
+  const CurrentModifier = MODIFIER_MAPPER[type];
 
   return (
     <div style={{ padding: 20 }}>
@@ -65,6 +76,11 @@ export const Modifier = () => {
           </Select>
         </FormControl>
       </div>
+      {CurrentModifier && (
+        <div className="modifier-field__wrapper">
+          <CurrentModifier />
+        </div>
+      )}
     </div>
   );
 };

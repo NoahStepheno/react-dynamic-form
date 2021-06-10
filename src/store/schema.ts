@@ -40,6 +40,35 @@ export const schema = createModel<RootModel>()({
             },
           },
         },
+        uiSchema: {
+          [key]: {
+            "ui:widget": "text",
+          },
+        },
+        selectUuid: key,
+      };
+    },
+    addRadio(state) {
+      const key = uuidv4();
+      return {
+        ...state,
+        JSONSchema: {
+          ...state.JSONSchema,
+          properties: {
+            ...state.JSONSchema.properties,
+            [key]: {
+              type: "string",
+              title: "",
+              description: "",
+              enum: ["hehe", "haha", "pi"],
+            },
+          },
+        },
+        uiSchema: {
+          [key]: {
+            "ui:widget": "radio",
+          },
+        },
         selectUuid: key,
       };
     },

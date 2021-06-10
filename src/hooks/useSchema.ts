@@ -13,15 +13,21 @@ const useSchema = () => {
     );
   }, [schema.selectUuid, schema.JSONSchema]);
 
+  const selectUISchema = useMemo(() => {
+    return Object.assign({}, schema.uiSchema[schema.selectUuid]);
+  }, [schema.selectUuid, schema.uiSchema]);
+
   return {
     schema,
     selectUuid: schema.selectUuid,
     JSONSchema: schema.JSONSchema,
     uiSchema: schema.uiSchema,
     addInput: dispatch.addInput,
+    addRadio: dispatch.addRadio,
     select: dispatch.select,
     edit: dispatch.edit,
     selectSchema,
+    selectUISchema,
   };
 };
 

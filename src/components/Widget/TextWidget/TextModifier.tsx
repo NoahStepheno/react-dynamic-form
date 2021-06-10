@@ -1,6 +1,6 @@
 import React from "react";
 
-const TextModifier: React.FC<void> = () => {
+const TextModifier: React.FC<any> = () => {
   return <div>TextModifier</div>;
 };
 

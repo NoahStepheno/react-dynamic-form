@@ -3,7 +3,7 @@ import { Button } from "@material-ui/core";
 import useSchema from "../../hooks/useSchema";
 
 export const LeftView = () => {
-  const { addInput } = useSchema();
+  const { addInput, addRadio } = useSchema();
   return (
     <div style={{ padding: 20 }}>
       <div>
@@ -12,8 +12,8 @@ export const LeftView = () => {
         </Button>
       </div>
       <div>
-        <Button variant="outlined" color="primary">
-          多行文本
+        <Button variant="outlined" color="primary" onClick={addRadio}>
+          单选
         </Button>
       </div>
       <div>
