@@ -4,8 +4,9 @@ import { FormControl, InputLabel, Select, TextField } from "@material-ui/core";
 import "./index.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, RootState } from "../../store/store";
-import TextModifier from "../Widget/TextWidget/TextModifier";
-import RadioModifier from "../Widget/RadioWidget/RadioModifier";
+import TextModifier from "../../widgets/TextWidget/TextModifier";
+import RadioModifier from "../../widgets/RadioWidget/RadioModifier";
+import { modifiers } from "../../modifiers";
 
 const MODIFIER_MAPPER = {
   text: TextModifier,
@@ -31,54 +32,26 @@ export const Modifier = () => {
 
   const type: keyof typeof MODIFIER_MAPPER = selectUISchema["ui:widget"];
 
-  const CurrentModifier = MODIFIER_MAPPER[type];
+  const CurrentModifier: any = MODIFIER_MAPPER[type];
+
+  const editSchema = (key: string) => (value: string) => edit({ key, value });
+
+  if (!CurrentModifier) {
+    return null;
+  }
 
   return (
     <div style={{ padding: 20 }}>
-      <div className="modifier-field__wrapper">
-        <TextField
-          value={title}
-          label="标题"
-          onChange={(e) => {
-            edit({
-              key: "title",
-              value: e.target.value,
-            });
-          }}
-        />
-      </div>
-      <div className="modifier-field__wrapper">
-        <TextField
-          value={description}
-          label="请输入描述"
-          onChange={(e) => {
-            edit({
-              key: "description",
-              value: e.target.value,
-            });
-          }}
-        />
-      </div>
-      <div className="modifier-field__wrapper">
-        <FormControl>
-          <InputLabel htmlFor="age-native-simple">是否必传</InputLabel>
-          <Select
-            native
-            value={currentIsRequired ? 1 : 0}
-            onChange={() => toggleRequired()}
-            inputProps={{
-              name: "age",
-              id: "age-native-simple",
-            }}
-          >
-            <option value={1}>是</option>
-            <option value={0}>否</option>
-          </Select>
-        </FormControl>
-      </div>
       {CurrentModifier && (
         <div className="modifier-field__wrapper">
-          <CurrentModifier />
+          <CurrentModifier
+            modifiers={modifiers}
+            schema={selectSchema}
+            uiSchema={selectUISchema}
+            editSchema={editSchema}
+            id={selectUuid}
+            toggleRequired={toggleRequired}
+          />
         </div>
       )}
     </div>

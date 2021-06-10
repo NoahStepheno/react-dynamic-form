@@ -41,6 +41,7 @@ export const schema = createModel<RootModel>()({
           },
         },
         uiSchema: {
+          ...state.uiSchema,
           [key]: {
             "ui:widget": "text",
           },
@@ -65,6 +66,7 @@ export const schema = createModel<RootModel>()({
           },
         },
         uiSchema: {
+          ...state.uiSchema,
           [key]: {
             "ui:widget": "radio",
           },

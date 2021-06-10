@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Form from "@rjsf/material-ui";
-import { DesignTextWidget } from "../Widget/TextWidget";
+import { DesignTextWidget } from "../../widgets/TextWidget";
 import DesignFieldTemplate from "../DesignFieldTemplate";
 import useSchema from "../../hooks/useSchema";
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 import "./index.css";
-import { DesignRadioWidget } from "../Widget/RadioWidget";
+import { DesignRadioWidget } from "../../widgets/RadioWidget";
 
 export const Design = () => {
   const { JSONSchema, uiSchema }: any = useSchema();
@@ -29,8 +29,6 @@ export const Design = () => {
   if (!JSONSchema) {
     return null;
   }
-
-  console.log({ JSONSchema });
 
   const widgets = {
     TextWidget: DesignTextWidget,
